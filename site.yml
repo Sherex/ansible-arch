@@ -14,7 +14,7 @@
     - role: sway
     - role: kitty
     - role: firefox
-    - role: wofi
+    - role: rofi
     - role: yay
     - role: i3status-rust-git
 

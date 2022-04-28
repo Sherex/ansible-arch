@@ -5,7 +5,7 @@
   become: true
   community.general.pacman:
     name: wofi
-    state: present
+    state: absent
 
 # - name: Copy {{ role_name }} configuration.
 #   become_user: "{{ username }}"

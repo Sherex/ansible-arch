@@ -1,0 +1,17 @@
+---
+# TODO: Configure rofi in sway config
+# TODO: Use Git submodule for themes
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become_user: "{{ username }}"
+  kewlfft.aur.aur:
+    use: yay
+    state: present
+    name:
+      - rofi-lbonn-wayland
+
+- name: Copy {{ role_name }} configuration.
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    src: "rofi"
+    dest: "~/.config/"

@@ -1,0 +1,10 @@
+configuration {
+	modi: "combi";
+	font: "hack 10";
+	show-icons: true;
+	terminal: "kitty";
+	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+	combi-modi: "drun,ssh";
+}
+
+@theme "/home/sherex/.config/rofi/themes/sidebar.rasi"
