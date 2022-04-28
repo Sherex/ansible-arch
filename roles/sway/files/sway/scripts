@@ -1,0 +1,3 @@
+# Polkit manager
+/bin/bash /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+/bin/bash echo Polkit manager started... | systemd-cat

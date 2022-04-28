@@ -1,0 +1,12 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become_user: "{{ username }}"
+  kewlfft.aur.aur:
+    use: yay
+    state: present
+    name:
+      # Better cp and mv commands (+ more)
+      - advcp
+      # Icons
+      - nnn-icons

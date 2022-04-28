@@ -1,0 +1,53 @@
+---
+- name: Ensure base packages are installed.
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name:
+      - base
+      - bash-completion
+      - btrfs-progs
+      - dhclient
+      - efibootmgr
+      - grub
+      - intel-ucode
+      - iwd
+      - linux
+      - linux-firmware
+      - man-db
+      - man-pages
+      - openssh
+      - texinfo
+      - docker
+      - docker-compose
+      - htop
+      - inetutils
+
+      # Packages without config
+      - mcfly
+      # Fancy `cat` command
+      - bat
+      # Fancy `df`
+      - duf
+      # Fancy `du`
+      - dust
+      # Fancy `find`
+      - fd
+      # Screen hue shifting
+      - gammastep
+      # Icons
+      - noto-fonts
+      - noto-fonts-cjk
+      - noto-fonts-emoji
+      - noto-fonts-extra
+
+      # Ansible
+      - python3
+      - rsync
+
+      # Utils
+      - vim
+    state: present
+
+# TODO: Check if yay is installed
+- import_tasks: 'aur.yml'

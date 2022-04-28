@@ -1,0 +1,31 @@
+---
+- name: Ensure user sudo exists.
+  become: true
+  ansible.builtin.group:
+    name: "sudo"
+    state: present
+
+- name: Ensure user {{ username }} exists.
+  become: true
+  ansible.builtin.user:
+    name: "{{ username }}"
+    password: "{{ password | password_hash('sha512') }}"
+    update_password: "on_create"
+    groups: 
+      - "sudo"
+    append: yes
+    state: present
+
+- name: Copy {{ role_name }} configuration.
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    src: "{{ role_name }}/"
+    dest: "~/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Copy bash configuration.
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    src: "bash"
+    dest: "~/.config/"

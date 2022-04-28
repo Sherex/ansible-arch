@@ -1,0 +1,14 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name:
+      - sudo
+    state: present
+
+- name: Copy {{ role_name }} configuration.
+  become: true
+  ansible.builtin.copy:
+    src: "./no-passwd-access"
+    dest: "/etc/sudoers.d/no-passwd-access"

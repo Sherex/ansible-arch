@@ -1,0 +1,14 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name: pacman
+    state: present
+
+# TODO: Run handler update cache
+- name: Copy configuration.
+  become: true
+  ansible.builtin.copy:
+    src: "mirrorlist"
+    dest: "/etc/pacman.d/mirrorlist"

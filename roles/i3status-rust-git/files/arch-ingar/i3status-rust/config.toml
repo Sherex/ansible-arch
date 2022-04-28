@@ -1,0 +1,112 @@
+# https://github.com/greshake/i3status-rust/blob/master/doc/blocks.md
+
+#theme = "nord-dark"
+theme = "plain"
+#icons = "awesome5"
+
+[icons]
+name = "awesome5"
+[icons.overrides]
+backup_icon = ""
+volume_half = ""
+
+[[block]]
+block = "disk_space"
+format = "{icon} {used}/{total} ({available} free)"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+## Show actual backupsize on BorgBase.com
+# [[block]]
+# block = "custom"
+# json = true
+# #command = ''' echo "{\"icon\":\"backup_icon\", \"text\": \"`borgmatic info --json | jq .[0].cache.stats.unique_csize | numfmt --to=si`\"}" '''
+# command = ''' echo "{\"icon\":\"backup_icon\", \"text\": \"`cat /home/sherex/.cache/userscripts/borgmatic-info.json | jq .[0].cache.stats.unique_csize | numfmt --to=si`\"}" '''
+# on_click = "xdg-open https://www.borgbase.com/repositories"
+# interval = 60
+
+[[block]]
+block = "memory"
+display_type = "memory"
+clickable = false
+format_mem = "{mem_used_percents}"
+#format_swap = "{swap_used_percents}"
+interval = 2
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "{barchart} {utilization} {frequency}"
+
+[[block]]
+block = "net"
+format = "{ip} {speed_down;K*b} {graph_down;K*b}"
+interval = 1
+
+# [[block]]
+# block = "sound"
+# step_width = 1
+
+# [[block]]
+# block = "custom"
+# command = "echo VolMix"
+# on_click = "myxer"
+# interval = "once"
+
+[[block]]
+block = "hueshift"
+hue_shifter = "gammastep"
+step = 50
+click_temp = 2500
+
+# [[block]]
+# block = "custom"
+# command = "echo WinShit 💩"
+# on_click = "sudo grub-reboot 'WinShit' && reboot"
+# interval = "once"
+
+# Commented out, because I'm not using custom kernel with vfio patch anymore
+#[[block]]
+#block = "toggle"
+#text = "VM"
+#command_state = "sudo virsh dominfo win10-uefi | grep running"
+#command_on = "/home/sherex/.config/sway/scripts.d/start-vm.sh"
+#command_off = "sudo virsh shutdown win10-uefi"
+#interval = 10
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "toggle"
+text = "🔒"
+command_state = "/home/sherex/.config/sway/scripts.d/lockscreen-toggle.sh status"
+command_on = "/home/sherex/.config/sway/scripts.d/lockscreen-toggle.sh enable"
+command_off = "/home/sherex/.config/sway/scripts.d/lockscreen-toggle.sh disable"
+interval = 10
+
+[[block]]
+block = "pacman"
+interval = 600
+#format = "{pacman} + {aur} = {both} updates available"
+format = "pac: {pacman} aur: {aur}"
+format_singular = "{both} update available"
+format_up_to_date = "system up to date"
+critical_updates_regex = "(linux |linux-lts|linux-zen)"
+# aur_command should output available updates to stdout (ie behave as echo -ne "update\n")
+aur_command = "yay -Qua"
+
+[[block]]
+block = "battery"
+format = "{percentage:6#100} {percentage} {time} {power}"
+
+[[block]]
+block = "time"
+interval = 1
+format = "%a %d/%m %T"
+

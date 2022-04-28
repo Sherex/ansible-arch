@@ -1,0 +1,24 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  community.general.pacman:
+    name:
+      - base-devel
+      - git
+      - linux-headers
+      - asp
+    state: present
+
+- name: Ensure yay is installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become_user: "{{ username }}"
+  kewlfft.aur.aur:
+    name: yay
+    use: auto
+    state: present
+
+# - name: Copy {{ role_name }} configuration.
+#   become_user: "{{ username }}"
+#   ansible.builtin.copy:
+#     src: "yay"
+#     dest: "~/.config/"

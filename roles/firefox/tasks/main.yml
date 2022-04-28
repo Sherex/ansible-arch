@@ -1,0 +1,13 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name: firefox
+    state: present
+
+# - name: Copy {{ role_name }} configuration.
+#   become_user: "{{ username }}"
+#   ansible.builtin.copy:
+#     src: "{{ansible_hostname}}/.mozilla"
+#     dest: "~/"
