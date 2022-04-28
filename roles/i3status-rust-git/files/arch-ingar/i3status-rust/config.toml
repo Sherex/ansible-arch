@@ -52,32 +52,11 @@ interval = 1
 # block = "sound"
 # step_width = 1
 
-# [[block]]
-# block = "custom"
-# command = "echo VolMix"
-# on_click = "myxer"
-# interval = "once"
-
 [[block]]
 block = "hueshift"
 hue_shifter = "gammastep"
 step = 50
 click_temp = 2500
-
-# [[block]]
-# block = "custom"
-# command = "echo WinShit 💩"
-# on_click = "sudo grub-reboot 'WinShit' && reboot"
-# interval = "once"
-
-# Commented out, because I'm not using custom kernel with vfio patch anymore
-#[[block]]
-#block = "toggle"
-#text = "VM"
-#command_state = "sudo virsh dominfo win10-uefi | grep running"
-#command_on = "/home/sherex/.config/sway/scripts.d/start-vm.sh"
-#command_off = "sudo virsh shutdown win10-uefi"
-#interval = 10
 
 [[block]]
 block = "backlight"
