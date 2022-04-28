@@ -103,7 +103,8 @@ aur_command = "yay -Qua"
 
 [[block]]
 block = "battery"
-format = "{percentage:6#100} {percentage} {time} {power}"
+driver = "upower"
+format = "{percentage} {time} {power}"
 
 [[block]]
 block = "time"

@@ -49,6 +49,9 @@
 
       # Utils
       - vim
+
+      # Power status
+      - upower
     state: present
 
 # TODO: Check if yay is installed
