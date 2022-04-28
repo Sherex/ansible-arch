@@ -33,6 +33,8 @@
       - dust
       # Fancy `find`
       - fd
+      # Better `grep`
+      - ripgrep
       # Screen hue shifting
       - gammastep
       # Icons
