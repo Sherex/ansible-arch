@@ -10,6 +10,8 @@
       - grim
       - mako
       - slurp
+      - swappy
+      - wl-clipboard
       #- rofi-lbonn-wayland # AUR
     state: present
 
