@@ -10,3 +10,5 @@
       - advcp
       # Icons
       - nnn-icons
+      - ttf-font-awesome
+      - ttf-ms-fonts
