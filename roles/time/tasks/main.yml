@@ -1,0 +1,11 @@
+---
+- name: Get timedatectl state.
+  become: true
+  changed_when: false
+  ansible.builtin.command: "timedatectl"
+  register: timedatectl
+
+- name: Ensure NTP is on.
+  become: true
+  when: "'NTP service: inactive' in timedatectl.stdout"
+  ansible.builtin.command: "timedatectl set-ntp true"

@@ -8,6 +8,7 @@
 
   roles:
     - role: base
+    - role: time
     - role: pacman
     - role: sudo
     - role: user
