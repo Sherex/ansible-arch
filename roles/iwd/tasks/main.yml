@@ -1,0 +1,44 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name: iwd
+    state: present
+
+- name: Copy {{ role_name }} service configuration.
+  become: true
+  ansible.builtin.copy:
+    src: "iwd"
+    dest: "/etc/"
+
+# iwd config file changes is automatically loaded
+- name: Ensure {{ role_name }} wifi configs has correct passphrase.
+  become: true
+  loop: "{{ conf.wifi }}"
+  vars:
+    ssid_conf: "/var/lib/iwd/{{ item.ssid }}.psk"
+  community.general.ini_file:
+    section: "Security"
+    option: "Passphrase"
+    value: "{{ item.pass }}"
+    path: "{{ ssid_conf }}"
+    mode: "600"
+
+- name: Ensure {{ role_name }} wifi configs has correct autoconnect setting.
+  become: true
+  loop: "{{ conf.wifi }}"
+  vars:
+    ssid_conf: "/var/lib/iwd/{{ item.ssid }}.psk"
+  community.general.ini_file:
+    section: "Settings"
+    option: "AutoConnect"
+    value: "{{ item.autoconnect }}"
+    path: "{{ ssid_conf }}"
+    mode: "600"
+
+- name: Ensure iwd service is running
+  ansible.builtin.service:
+    name: iwd
+    enabled: yes
+    state: started

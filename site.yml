@@ -14,6 +14,7 @@
     - role: time
     - role: pacman
     - role: sudo
+    - role: iwd
     - role: sway
     - role: git
     - role: kitty
@@ -27,4 +28,3 @@
         variables:
           - ansible_facts
           - "!all"
-

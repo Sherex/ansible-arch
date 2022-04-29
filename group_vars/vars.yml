@@ -1,2 +1,10 @@
 username: "{{ _vault.username }}"
 password: "{{ _vault.password }}"
+conf:
+  wifi:
+    - ssid: "{{ _vault.wifi.home.ssid }}"
+      pass: "{{ _vault.wifi.home.pass }}"
+      autoconnect: True
+    - ssid: "{{ _vault.wifi.work.ssid }}"
+      pass: "{{ _vault.wifi.work.pass }}"
+      autoconnect: True
