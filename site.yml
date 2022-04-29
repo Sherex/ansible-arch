@@ -13,6 +13,7 @@
     - role: sudo
     - role: user
     - role: sway
+    - role: git
     - role: kitty
     - role: firefox
     - role: rofi

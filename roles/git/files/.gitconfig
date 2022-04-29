@@ -1,0 +1,15 @@
+[user]
+	email = ingar@i-h.no
+	name = Ingar Helgesen
+	signingKey = ACB35E17C3B38914
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
