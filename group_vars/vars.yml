@@ -1,2 +1,2 @@
-username: "sherex"
-password: "" # TODO: Vault secret
+username: "{{ _vault.username }}"
+password: "{{ _vault.password }}"

@@ -3,6 +3,8 @@
   become: true
 
   pre_tasks:
+    - name: Load Vault
+      ansible.builtin.include_vars: "group_vars/vault"
     - name: Load configuration
       ansible.builtin.include_vars: "group_vars/vars.yml"
 
