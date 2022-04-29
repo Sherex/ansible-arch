@@ -8,10 +8,10 @@
 
   roles:
     - role: base
+    - role: user
     - role: time
     - role: pacman
     - role: sudo
-    - role: user
     - role: sway
     - role: git
     - role: kitty
