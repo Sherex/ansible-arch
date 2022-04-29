@@ -1,0 +1,2 @@
+debug_dir_path: "debug_data/{{ ansible_hostname }}"
+debug_dir_absoulte_path: "{{ playbook_dir }}/{{ debug_dir_path }}"

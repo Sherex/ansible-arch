@@ -1,0 +1,27 @@
+---
+#
+# Outputs the content of a variables (specified in the role's vars: key) to:
+# debug_data/{{ansible_hostname}}/{{var_name}}.yml
+#
+
+- name: Ensure variables is defined
+  become: false
+  when: variables is not defined
+  ansible.builtin.fail:
+    msg: Please define the names of the variables to output in the variable 'variables'
+
+- name: Ensure {{ debug_dir_path }} directory exists
+  become: false
+  local_action:
+    module: ansible.builtin.file
+    path: "{{ debug_dir_absoulte_path }}"
+    state: directory
+
+- name: Write content of variables to {{ debug_dir_path }}/variable_name.yml
+  become: false
+  with_items: "{{ variables }}"
+  local_action: 
+    module: ansible.builtin.copy
+    # If item is '!all' output all variables, otherwise output the variable with that name
+    content: "{{ ((item == '!all') | ternary(vars, vars[item])) | to_nice_yaml }}"
+    dest: "{{ debug_dir_absoulte_path }}/{{ item }}.yml"

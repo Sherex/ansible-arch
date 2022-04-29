@@ -20,4 +20,9 @@
     - role: yay
     - role: i3status-rust-git
     - role: vscode
+    - role: debug
+      vars:
+        variables:
+          - ansible_facts
+          - "!all"
 
