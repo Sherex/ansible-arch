@@ -72,6 +72,37 @@ snapkeep () {
   snapper create -t single -d "[$2]$1" --read-write --from $2
 }
 
+snapfix-sysup () {
+  PRE_NUMBER=$1
+  if [[ ! $PRE_NUMBER =~ ^[0-9]+$ ]]; then
+    echo
+    snapper list
+    echo
+    echo "ERROR: Please specify the PRE_NUMBER as first argument"
+    echo "Exiting..."
+    return
+  fi
+  DESC=${2:-"System upgrade (repo)"}
+
+  # Return all snapshot numbers between $PRE_NUMBER and latest as a space delimited string (eg. "255 256 257")
+  SNAPSHOTS_TO_REMOVE=$(snapper --jsonout list | jq -r ".root | map(select(.number > $PRE_NUMBER and (.type | match(\"pre|post\"))).number) | join(\" \")")
+
+  echo "Removing these snapshots:"
+  snapper list | grep -E "^(?${SNAPSHOTS_TO_REMOVE// /\|})" # Param expansion replace space with |
+
+  read -e -p 'Do you wish to delete these snapshots? (y/N): ' CONTINUE_ANSWER
+  if [[ ! ${CONTINUE_ANSWER,,} =~ ^(ye?s?)$ ]]; then
+    echo 'Exiting...'
+    return
+  fi
+  
+  echo "Removing snapshots: $SNAPSHOTS_TO_REMOVE"
+  snapper remove $SNAPSHOTS_TO_REMOVE
+
+  echo -n "Creating post snapshot for $PRE_NUMBER with number "
+  snapper create --type post --pre-number $PRE_NUMBER -d "$DESC" --cleanup-algorithm timeline --read-only --print-number
+}
+
 lockscreen () {
   LOCK_PATH="/tmp/lockscreen-status.lock"
   if [ "$1" = "disable" ]; then
