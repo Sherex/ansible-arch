@@ -22,6 +22,9 @@
       - htop
       - inetutils
 
+      # Networking
+      - iptables-nft
+
       # Packages without config
       - mcfly
       # Fancy `cat` command
