@@ -25,6 +25,8 @@ source /usr/share/doc/mcfly/mcfly.bash
 # ALIASES
 alias ls='ls --color=auto'
 alias diff='diff --color=auto'
+alias pacman='pacman --color=auto'
+alias yay='yay --color=auto'
 alias dobu='sudo screen -dmS "backup" "/media/backups/perform-backup.sh"'
 #alias eb='$EDITOR $HOME/.bashrc && source $HOME/.bashrc'
 alias eb='touch $HOME/.bashrc.md5 ; $EDITOR $HOME/.bashrc && [ "$(cat $HOME/.bashrc.md5)" = "$(md5sum $HOME/.bashrc)" ] || source $HOME/.bashrc && md5sum $HOME/.bashrc > $HOME/.bashrc.md5'
