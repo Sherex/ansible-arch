@@ -1,11 +1,4 @@
 ## DOCS: "man bash" line ~1730
 
-# Source: https://unix.stackexchange.com/a/4872
-set editing-mode vi
-set keymap vi
-set show-mode-in-prompt on
-set vi-ins-mode-string "\033[0;36mλ\033[0;32m"
-set vi-cmd-mode-string "\033[0;35mλ\033[0;32m"
-
 set colored-completion-prefix on
 set colored-stats on
