@@ -73,19 +73,26 @@ snapkeep () {
 }
 
 snapfix-sysup () {
-  PRE_NUMBER=$1
-  if [[ ! $PRE_NUMBER =~ ^[0-9]+$ ]]; then
+  ARG_PRE_NUMBER=$1
+  ARG_DESCRIPTION=$2
+
+  if [[ ! $ARG_PRE_NUMBER =~ ^[0-9]+$ ]]; then
     echo
     snapper list
     echo
-    echo "ERROR: Please specify the PRE_NUMBER as first argument"
+    echo "ERROR: Please specify the snapshot pre number to delete from (not including) as first argument"
     echo "Exiting..."
     return
   fi
-  DESC=${2:-"System upgrade (repo)"}
 
-  # Return all snapshot numbers between $PRE_NUMBER and latest as a space delimited string (eg. "255 256 257")
-  SNAPSHOTS_TO_REMOVE=$(snapper --jsonout list | jq -r ".root | map(select(.number > $PRE_NUMBER and (.type | match(\"pre|post\"))).number) | join(\" \")")
+  # Return all snapshot numbers from and including $ARG_PRE_NUMBER and latest as JSON
+  SNAPSHOTS_SELECTED_JSON=$(snapper --jsonout list --columns number,type,description | jq -r ".root | map(select(.number >= $ARG_PRE_NUMBER and (.type | match(\"pre|post\"))))")
+  
+  # Get description of first snapshot if not provided by the description argument
+  DESCRIPTION=${ARG_DESCRIPTION:-$(echo $SNAPSHOTS_SELECTED_JSON | jq -r ".[0].description")}
+
+  # Return all snapshot numbers between $ARG_PRE_NUMBER and latest as a space delimited string (eg. "255 256 257")
+  SNAPSHOTS_TO_REMOVE=$(echo $SNAPSHOTS_SELECTED_JSON | jq -r ".[1:] | map(.number) | join(\" \")")
 
   echo "Removing these snapshots:"
   snapper list | grep -E "^(?${SNAPSHOTS_TO_REMOVE// /\|})" # Param expansion replace space with |
@@ -99,8 +106,8 @@ snapfix-sysup () {
   echo "Removing snapshots: $SNAPSHOTS_TO_REMOVE"
   snapper remove $SNAPSHOTS_TO_REMOVE
 
-  echo -n "Creating post snapshot for $PRE_NUMBER with number "
-  snapper create --type post --pre-number $PRE_NUMBER -d "$DESC" --cleanup-algorithm timeline --read-only --print-number
+  echo -n "Creating post snapshot for $ARG_PRE_NUMBER with number "
+  snapper create --type post --pre-number $ARG_PRE_NUMBER -d "$DESCRIPTION" --cleanup-algorithm timeline --read-only --print-number
 }
 
 lockscreen () {
