@@ -1,0 +1,23 @@
+---
+# TODO: Check if the required hypervisor are installed
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name: vagrant
+    state: present
+
+- name: Get installed vagrant plugins.
+  become: true
+  ansible.builtin.shell: "vagrant plugin list | sed 's/ .*//'"
+  register: vagrant_plugin_list
+  changed_when: false
+
+- name: Ensure vagrant plugins are installed.
+  become: true
+  when:
+    - "vagrant_plugin_list.rc == 0"
+    - "item not in vagrant_plugin_list.stdout_lines"
+  # debugger: always
+  loop: "{{ vagrang_plugins }}"
+  ansible.builtin.command: "vagrant plugin install {{ item }}"

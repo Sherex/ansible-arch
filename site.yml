@@ -23,6 +23,10 @@
     - role: yay
     - role: i3status-rust-git
     - role: vscode
+    - role: vagrant
+      vars:
+        vagrang_plugins:
+          - vagrant-libvirt
     - role: debug
       vars:
         variables:
