@@ -1,2 +1,5 @@
 # Data written by the debug role
 debug_data
+
+# Ansible vault
+group_vars/vault
