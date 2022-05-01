@@ -11,3 +11,4 @@
   ansible.builtin.copy:
     src: "kitty"
     dest: "~/.config/"
+    mode: preserve

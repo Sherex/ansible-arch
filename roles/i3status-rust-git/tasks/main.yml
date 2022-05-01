@@ -12,3 +12,4 @@
   ansible.builtin.copy:
     src: "{{ansible_hostname}}/i3status-rust"
     dest: "~/.config/"
+    mode: preserve

@@ -12,3 +12,4 @@
   ansible.builtin.copy:
     src: "mirrorlist"
     dest: "/etc/pacman.d/mirrorlist"
+    mode: preserve

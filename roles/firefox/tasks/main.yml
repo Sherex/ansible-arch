@@ -11,3 +11,4 @@
 #   ansible.builtin.copy:
 #     src: "{{ansible_hostname}}/.mozilla"
 #     dest: "~/"
+#     mode: preserve

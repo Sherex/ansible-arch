@@ -20,5 +20,4 @@
   ansible.builtin.copy:
     src: "{{ role_name }}"
     dest: "~/.config/"
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    mode: preserve

@@ -21,11 +21,11 @@
   ansible.builtin.copy:
     src: "{{ role_name }}/"
     dest: "~/"
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    mode: preserve
 
 - name: Copy bash configuration.
   become_user: "{{ username }}"
   ansible.builtin.copy:
     src: "bash"
     dest: "~/.config/"
+    mode: preserve

@@ -12,3 +12,4 @@
   ansible.builtin.copy:
     src: "./no-passwd-access"
     dest: "/etc/sudoers.d/no-passwd-access"
+    mode: preserve

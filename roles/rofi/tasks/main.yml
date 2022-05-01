@@ -15,3 +15,4 @@
   ansible.builtin.copy:
     src: "rofi"
     dest: "~/.config/"
+    mode: preserve

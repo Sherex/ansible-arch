@@ -11,3 +11,4 @@
   ansible.builtin.copy:
     src: ".gitconfig"
     dest: "~/"
+    mode: preserve

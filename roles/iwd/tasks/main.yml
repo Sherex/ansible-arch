@@ -11,6 +11,7 @@
   ansible.builtin.copy:
     src: "iwd"
     dest: "/etc/"
+    mode: preserve
 
 # iwd config file changes is automatically loaded
 - name: Ensure {{ role_name }} wifi configs has correct passphrase.

@@ -12,3 +12,4 @@
 #   ansible.builtin.copy:
 #     src: "wofi"
 #     dest: "~/.config/"
+#     mode: preserve

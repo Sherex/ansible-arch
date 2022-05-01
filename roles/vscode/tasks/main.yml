@@ -13,3 +13,4 @@
 #   ansible.builtin.copy:
 #     src: "Code"
 #     dest: "~/.config/"
+#     mode: preserve
