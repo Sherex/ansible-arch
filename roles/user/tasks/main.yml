@@ -1,5 +1,16 @@
 ---
-- name: Ensure user sudo exists.
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name:
+      # Includes command-not-found.bash
+      - pkgfile
+      # File finder
+      - broot
+    state: present
+
+- name: Ensure group sudo exists.
   become: true
   ansible.builtin.group:
     name: "sudo"
