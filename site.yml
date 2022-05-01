@@ -33,7 +33,7 @@
     - role: vagrant
       when: "conf.vagrant is defined"
       vars:
-        vagrang_plugins: # TODO: Make configurable
+        vagrant_plugins: # TODO: Make configurable
           - vagrant-libvirt
     # - role: debug
     #   vars:

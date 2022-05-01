@@ -19,5 +19,5 @@
     - "vagrant_plugin_list.rc == 0"
     - "item not in vagrant_plugin_list.stdout_lines"
   # debugger: always
-  loop: "{{ vagrang_plugins }}"
+  loop: "{{ vagrant_plugins }}"
   ansible.builtin.command: "vagrant plugin install {{ item }}"
