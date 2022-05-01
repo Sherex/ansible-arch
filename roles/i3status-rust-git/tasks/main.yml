@@ -2,14 +2,15 @@
 - name: Ensure dependencies are installed (Archlinux).
   when: ansible_facts.os_family == "Archlinux"
   become_user: "{{ username }}"
+  notify: "migrate-0"
   kewlfft.aur.aur:
-    name: i3status-rust-git
+    name: i3status-rust
     use: yay
     state: present
 
 - name: Copy {{ role_name }} configuration.
   become_user: "{{ username }}"
   ansible.builtin.copy:
-    src: "{{ansible_hostname}}/i3status-rust"
+    src: "{{ansible_hostname | lower}}/i3status-rust"
     dest: "~/.config/"
     mode: preserve

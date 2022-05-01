@@ -1,0 +1,8 @@
+---
+- name: Ensure i3status-rust-git is not installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become_user: "{{ username }}"
+  listen: "migrate-0"
+  ansible.builtin.pacman:
+    name: i3status-rust-git
+    state: absent
