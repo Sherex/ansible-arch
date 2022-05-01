@@ -12,7 +12,9 @@
       - slurp
       - swappy
       - wl-clipboard
-      #- rofi-lbonn-wayland # AUR
+
+      # Screen recording
+      - wf-recorder
     state: present
 
 - name: Copy {{ role_name }} configuration.
