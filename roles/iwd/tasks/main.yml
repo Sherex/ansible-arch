@@ -20,6 +20,7 @@
   vars:
     ssid_conf: "/var/lib/iwd/{{ item.ssid }}.psk"
   community.general.ini_file:
+    no_extra_spaces: true
     section: "Security"
     option: "Passphrase"
     value: "{{ item.pass }}"
@@ -32,6 +33,7 @@
   vars:
     ssid_conf: "/var/lib/iwd/{{ item.ssid }}.psk"
   community.general.ini_file:
+    no_extra_spaces: true
     section: "Settings"
     option: "AutoConnect"
     value: "{{ item.autoconnect }}"
