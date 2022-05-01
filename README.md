@@ -47,5 +47,13 @@ A playbook for installing and configuring my Arch devices.
 ```bash
 git clone https://github.com/Sherex/ansible-arch
 
-ansible-playbook site.yml
+cd ansible-arch
+
+ansible ansible-galaxy install -r requirements.yml
+
+# TODO: Store vault on server and automate retrieval
+# TODO: Create vault yaml template
+# Transfer/create ansible-vault to/at ./group_vars/vault
+
+ansible-playbook --ask-vault-pass site.yml
 ```
