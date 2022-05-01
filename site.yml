@@ -1,12 +1,9 @@
-- hosts: 127.0.0.1
-  connection: local
+- hosts: all
   become: true
 
   pre_tasks:
     - name: Load Vault
       ansible.builtin.include_vars: "group_vars/vault"
-    - name: Load common configuration
-      ansible.builtin.include_vars: "group_vars/common.yml"
     - name: Load common configuration libs
       ansible.builtin.include_vars: "group_vars/common-lib.yml"
     - name: Load machine specific configuration
