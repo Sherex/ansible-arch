@@ -1,7 +1,7 @@
 ---
 - name: Ensure dependencies are installed (Archlinux).
   when: ansible_facts.os_family == "Archlinux"
-  become_user: "{{ username }}"
+  become_user: "{{ conf.user.username }}"
   kewlfft.aur.aur:
     use: yay
     state: present
@@ -9,7 +9,7 @@
       - visual-studio-code-bin
 
 # - name: Copy {{ role_name }} configuration.
-#   become_user: "{{ username }}"
+#   become_user: "{{ conf.user.username }}"
 #   ansible.builtin.copy:
 #     src: "Code"
 #     dest: "~/.config/"

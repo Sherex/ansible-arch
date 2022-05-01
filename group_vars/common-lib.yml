@@ -7,3 +7,7 @@ common_wifi:
   - ssid: "{{ _vault.wifi.work.ssid }}"
     pass: "{{ _vault.wifi.work.pass }}"
     autoconnect: True
+
+common_user:
+  username: "{{ _vault.username }}"
+  password: "{{ _vault.password }}"

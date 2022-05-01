@@ -8,7 +8,7 @@
     state: absent
 
 # - name: Copy {{ role_name }} configuration.
-#   become_user: "{{ username }}"
+#   become_user: "{{ conf.user.username }}"
 #   ansible.builtin.copy:
 #     src: "wofi"
 #     dest: "~/.config/"

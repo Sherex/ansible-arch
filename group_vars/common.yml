@@ -1,6 +1,7 @@
-username: "{{ _vault.username }}"
-password: "{{ _vault.password }}"
 conf:
+  user:
+    username: "{{ _vault.username }}"
+    password: "{{ _vault.password }}"
   roles:
     - base
     - user

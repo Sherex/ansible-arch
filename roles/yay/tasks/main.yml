@@ -11,14 +11,14 @@
 
 - name: Ensure yay is installed (Archlinux).
   when: ansible_facts.os_family == "Archlinux"
-  become_user: "{{ username }}"
+  become_user: "{{ conf.user.username }}"
   kewlfft.aur.aur:
     name: yay
     use: auto
     state: present
 
 # - name: Copy {{ role_name }} configuration.
-#   become_user: "{{ username }}"
+#   become_user: "{{ conf.user.username }}"
 #   ansible.builtin.copy:
 #     src: "yay"
 #     dest: "~/.config/"

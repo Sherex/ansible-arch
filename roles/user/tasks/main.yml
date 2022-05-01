@@ -5,11 +5,11 @@
     name: "sudo"
     state: present
 
-- name: Ensure user {{ username }} exists.
+- name: Ensure user {{ conf.user.username }} exists.
   become: true
   ansible.builtin.user:
-    name: "{{ username }}"
-    password: "{{ password | password_hash('sha512') }}"
+    name: "{{ conf.user.username }}"
+    password: "{{ conf.user.password | password_hash('sha512') }}"
     update_password: "on_create"
     groups: 
       - "sudo"
@@ -17,14 +17,14 @@
     state: present
 
 - name: Copy {{ role_name }} configuration.
-  become_user: "{{ username }}"
+  become_user: "{{ conf.user.username }}"
   ansible.builtin.copy:
     src: "{{ role_name }}/"
     dest: "~/"
     mode: preserve
 
 - name: Copy bash configuration.
-  become_user: "{{ username }}"
+  become_user: "{{ conf.user.username }}"
   ansible.builtin.copy:
     src: "bash"
     dest: "~/.config/"

@@ -1,4 +1,5 @@
 conf:
+  user: "{{ common_user }}" 
   vagrant:
     vars:
       vagrang_plugins:
