@@ -1,0 +1,18 @@
+username: "{{ _vault.username }}"
+password: "{{ _vault.password }}"
+conf:
+  roles:
+    - base
+    - user
+    - time
+    - pacman
+    - sudo
+    - sway
+    - git
+    - kitty
+    - firefox
+    - rofi
+    - yay
+    - i3status-rust-git
+    - vscode
+    - vagrant

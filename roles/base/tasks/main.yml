@@ -7,7 +7,6 @@
       - base
       - bash-completion
       - btrfs-progs
-      - dhclient
       - efibootmgr
       - grub
       - intel-ucode

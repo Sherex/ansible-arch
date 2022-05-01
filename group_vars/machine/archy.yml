@@ -1,0 +1,5 @@
+conf:
+  vagrant:
+    vars:
+      vagrang_plugins:
+        - vagrant-libvirt

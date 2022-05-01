@@ -1,0 +1,3 @@
+conf:
+  wifi: "{{ common_wifi }}"
+  dhclient: # TODO: Use the same dhcp client on all machines

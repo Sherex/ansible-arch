@@ -5,8 +5,12 @@
   pre_tasks:
     - name: Load Vault
       ansible.builtin.include_vars: "group_vars/vault"
-    - name: Load configuration
-      ansible.builtin.include_vars: "group_vars/vars.yml"
+    - name: Load common configuration
+      ansible.builtin.include_vars: "group_vars/common.yml"
+    - name: Load common configuration libs
+      ansible.builtin.include_vars: "group_vars/common-lib.yml"
+    - name: Load machine specific configuration
+      ansible.builtin.include_vars: "group_vars/machine/{{ ansible_hostname | lower }}.yml"
 
   roles:
     - role: base
@@ -15,6 +19,9 @@
     - role: pacman
     - role: sudo
     - role: iwd
+      when: "conf.wifi is defined"
+    - role: dhclient
+      when: "conf.dhclient is defined"
     - role: sway
     - role: git
     - role: kitty
@@ -24,11 +31,12 @@
     - role: i3status-rust-git
     - role: vscode
     - role: vagrant
+      when: "conf.vagrant is defined"
       vars:
-        vagrang_plugins:
+        vagrang_plugins: # TODO: Make configurable
           - vagrant-libvirt
-    - role: debug
-      vars:
-        variables:
-          - ansible_facts
-          - "!all"
+    # - role: debug
+    #   vars:
+    #     variables:
+    #       - ansible_facts
+    #       - "!all"

@@ -1,0 +1,9 @@
+## Used for variables that can be optionally used and if used it's usually the same across the machines.
+
+common_wifi:
+  - ssid: "{{ _vault.wifi.home.ssid }}"
+    pass: "{{ _vault.wifi.home.pass }}"
+    autoconnect: True
+  - ssid: "{{ _vault.wifi.work.ssid }}"
+    pass: "{{ _vault.wifi.work.pass }}"
+    autoconnect: True
