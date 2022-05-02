@@ -1,0 +1,14 @@
+[Interface]
+Address = {{ host.address }}
+PrivateKey = {{ private_key }}
+DNS = {{ host.dns }}
+ListenPort = 51871
+{% for peer in host.peers %}
+
+# {{ peer.name }}
+[Peer]
+PublicKey = {{ peer.public_key }}
+AllowedIPs = {{ peer.allowed_ips }}
+Endpoint = {{ peer.endpoint }}
+PersistentKeepalive = 25
+{% endfor %}

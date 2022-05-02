@@ -2,3 +2,13 @@ conf:
   user: "{{ common_user }}" 
   wifi: "{{ common_wifi }}"
   dhclient: # TODO: Use the same dhcp client on all machines
+  wireguard:
+    ifaces:
+      - iface: wg0
+        address: "10.50.0.50/24"
+        dns: "10.50.0.1"
+        peers:
+          - name: "Example"
+            public_key: ""
+            allowed_ips: "10.50.0.1"
+            endpoint: "vpn.example.com:51000"

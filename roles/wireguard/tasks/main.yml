@@ -1,0 +1,56 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name:
+      - wireguard-tools
+    state: present
+
+- name: Ensure all interfaces have a private key
+  loop: "{{ ifaces }}"
+  # vars:
+  #   conf_file: "/etc/wireguard/{{ item.iface }}.conf"
+  # when: "lookup('ini', 'PrivateKey', section='Interface', file=conf_file)" # BUG: lookups run on the control machine, find better way to check for private key (awk?)
+  register: wg_keys
+  ansible.builtin.shell: "wg genkey"
+
+
+- name: Copy {{ role_name }} configuration.
+  become: true
+  loop: "{{ ifaces }}"
+  loop_control:
+    index_var: iface_index
+  vars:
+    - host: "{{ item }}"
+    - private_key: "{{ wg_keys.results[iface_index].stdout }}"
+  ansible.builtin.template:
+    src: "./wg.conf.j2"
+    dest: "/etc/wireguard/{{ item.iface }}.conf"
+    mode: "600"
+    backup: true
+
+- name: Copy {{ role_name }} configuration.
+  become: true
+  loop: "{{ ifaces }}"
+  loop_control:
+    index_var: iface_index
+  vars:
+    - private_key: "{{ wg_keys.results[iface_index].stdout }}"
+  local_action: 
+    module: ansible.builtin.copy
+    content: "{{ private_key }}"
+    dest: "./{{ item.iface }}.yml"
+
+# - name: Ensure {{ role_name }} host config is correct.
+#   become: true
+#   loop: "{{ ifaces[0].peers }}"
+#   vars:
+#     ssid_conf: "/etc/wireguard/{{ item.iface }}.conf"
+#   community.general.ini_file:
+#     section: "Interface"
+#     path: "{{ ssid_conf }}"
+#     mode: "600"
+#     values:
+#       - "Address": "{{ ifaces[0].address }}"
+#       - "Address": "{{ ifaces[0].address }}"

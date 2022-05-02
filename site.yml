@@ -32,6 +32,10 @@
       vars:
         vagrant_plugins: # TODO: Make configurable
           - vagrant-libvirt
+    - role: wireguard
+      when: "conf.wireguard is defined"
+      vars:
+        ifaces: "{{ conf.wireguard.ifaces }}"
     # - role: debug
     #   vars:
     #     variables:
