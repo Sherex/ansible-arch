@@ -11,6 +11,7 @@
       - gst-plugins-good
       - pdfjs
       - qt5-webkit
+      - qt5-wayland
     state: present
 
 - name: Copy {{ role_name }} configuration.
