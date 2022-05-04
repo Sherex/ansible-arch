@@ -1,0 +1,21 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name:
+      - qutebrowser
+      - python-adblock
+      - gst-libav
+      - gst-plugins-base
+      - gst-plugins-good
+      - pdfjs
+      - qt5-webkit
+    state: present
+
+- name: Copy {{ role_name }} configuration.
+  become_user: "{{ conf.user.username }}"
+  ansible.builtin.copy:
+    src: "./"
+    dest: "~/.config/"
+    mode: preserve

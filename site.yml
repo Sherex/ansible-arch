@@ -1,4 +1,5 @@
-- hosts: all
+- hosts: localhost
+  connection: local
   become: true
 
   pre_tasks:
@@ -23,6 +24,9 @@
     - role: git
     - role: kitty
     - role: firefox
+      when: "conf.browser == 'firefox'"
+    - role: qutebrowser
+      when: "conf.browser == 'qutebrowser'"
     - role: rofi
     - role: yay
     - role: i3status-rust-git

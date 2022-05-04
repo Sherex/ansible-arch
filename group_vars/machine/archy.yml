@@ -1,5 +1,6 @@
 conf:
-  user: "{{ common_user }}" 
+  user: "{{ common_user }}"
+  browser: 'qutebrowser'
   vagrant:
     vars:
       vagrang_plugins:
