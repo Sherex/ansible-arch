@@ -43,6 +43,7 @@
       - noto-fonts-cjk
       - noto-fonts-emoji
       - noto-fonts-extra
+      - ttf-nerd-fonts-symbols
 
       # Ansible
       - ansible
