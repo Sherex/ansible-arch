@@ -4,6 +4,9 @@ common_wifi:
   - ssid: "{{ _vault.wifi.home.ssid }}"
     pass: "{{ _vault.wifi.home.pass }}"
     autoconnect: True
+  - ssid: "{{ _vault.wifi.home_parents.ssid }}"
+    pass: "{{ _vault.wifi.home_parents.pass }}"
+    autoconnect: True
   - ssid: "{{ _vault.wifi.work.ssid }}"
     pass: "{{ _vault.wifi.work.pass }}"
     autoconnect: True
