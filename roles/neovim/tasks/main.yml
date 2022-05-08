@@ -1,0 +1,17 @@
+---
+- name: Ensure dependencies are installed (Archlinux).
+  when: ansible_facts.os_family == "Archlinux"
+  become: true
+  community.general.pacman:
+    name:
+      - neovim
+      - python-neovim
+    state: present
+
+#- name: Copy {{ role_name }} service configuration.
+#  become_user: "{{ conf.user.username }}"
+#  ansible.builtin.copy:
+#    src: "./"
+#    dest: "~/.config/nvim/"
+#    mode: preserve
+
