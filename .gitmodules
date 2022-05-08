@@ -1,0 +1,3 @@
+[submodule "submodules/lunarvim"]
+	path = submodules/lunarvim
+	url = git@github.com:LunarVim/LunarVim.git

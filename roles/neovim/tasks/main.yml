@@ -8,10 +8,22 @@
       - python-neovim
     state: present
 
-#- name: Copy {{ role_name }} service configuration.
-#  become_user: "{{ conf.user.username }}"
-#  ansible.builtin.copy:
-#    src: "./"
-#    dest: "~/.config/nvim/"
-#    mode: preserve
+- name: Copy {{ role_name }} service configuration.
+  become_user: "{{ conf.user.username }}"
+  ansible.builtin.copy:
+    src: "./"
+    dest: "~/.config/nvim/"
+    mode: preserve
+
+- name: Copy {{ role_name }} service configuration.
+  become_user: "{{ conf.user.username }}"
+  loop:
+    - "./lunarvim/init.lua"
+    - "./lunarvim/lua"
+    - "./lunarvim/snapshots"
+    - "./lunarvim/ftdetect"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "~/.config/nvim/"
+    mode: preserve
 
