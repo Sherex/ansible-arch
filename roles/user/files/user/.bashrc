@@ -22,6 +22,9 @@ source ~/.bash_completion.d/complete_alias
 ## McFly pkg configuration
 source /usr/share/doc/mcfly/mcfly.bash
 
+## Add .local/bin to $PATH
+export PATH+=:$HOME/.local/bin
+
 # ALIASES
 alias ls='ls --color=auto'
 alias diff='diff --color=auto'
