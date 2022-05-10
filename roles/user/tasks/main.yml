@@ -23,7 +23,7 @@
     password: "{{ conf.user.password | password_hash('sha512') }}"
     update_password: "on_create"
     groups: 
-      - "sudo"
+      - "sudo" # TODO: Move to sudo role
     append: yes
     state: present
 

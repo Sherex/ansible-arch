@@ -16,8 +16,6 @@
       - man-pages
       - openssh
       - texinfo
-      - docker
-      - docker-compose
       - htop
       - inetutils
       - unarchiver
