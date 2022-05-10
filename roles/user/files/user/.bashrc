@@ -179,6 +179,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 source /usr/share/nvm/init-nvm.sh
 
+# FNM (Fast Node Manager) specific
+eval "$(fnm env --use-on-cd)"
+
 # NNN quitcd
 nnn_quitcd ()
 {

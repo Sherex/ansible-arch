@@ -12,3 +12,6 @@
       - nnn-icons
       - ttf-font-awesome
       - ttf-ms-fonts
+      # Utils
+      - fnm-bin # Fast Node Manager (https://github.com/Schniz/fnm)
+
