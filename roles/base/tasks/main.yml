@@ -20,6 +20,7 @@
       - docker-compose
       - htop
       - inetutils
+      - unarchiver
 
       # Networking
       - iptables-nft
