@@ -19,8 +19,10 @@ source $HOME/.config/bash/git-prompt.sh
 ## Bash completion for aliases (https://github.com/cykerway/complete-alias)
 source ~/.bash_completion.d/complete_alias
 
-## McFly pkg configuration
-source /usr/share/doc/mcfly/mcfly.bash
+## McFly pkg configuration (https://github.com/cantino/mcfly)
+source /usr/share/doc/mcfly/mcfly.bash # TODO: Move to mcfly role
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_FUZZY=3
 
 ## Add .local/bin to $PATH
 export PATH+=:$HOME/.local/bin
