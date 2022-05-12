@@ -36,6 +36,8 @@
       vars:
         vagrant_plugins: # TODO: Make configurable
           - vagrant-libvirt
+    - role: php
+      when: "conf.dev.php is defined"
     # - role: debug
     #   vars:
     #     variables:
