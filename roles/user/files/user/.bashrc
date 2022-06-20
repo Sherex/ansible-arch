@@ -29,7 +29,8 @@ export PATH+=:$HOME/.local/bin
 
 # ALIASES
 alias ls='ls --color=auto'
-alias diff='diff --color=auto'
+alias dyff='diff --color=auto --side-by-side'
+alias diff='diff --color=auto --side-by-side --suppress-common-lines'
 alias pacman='pacman --color=auto'
 alias yay='yay --color=auto'
 alias dobu='sudo screen -dmS "backup" "/media/backups/perform-backup.sh"'
