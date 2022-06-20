@@ -53,6 +53,7 @@ alias dig='echo -e "Other cmd: dog\n" && dig'
 alias cp='cpg --progress'
 alias mv='mvg --progress'
 alias vim='lvim'
+alias v='vim ./'
 
 alias i='yay -Sy '
 alias ir='yay -R '
