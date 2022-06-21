@@ -2,10 +2,6 @@ set $config_dir /home/sherex/.config
 set $script_dir $config_dir/sway/scripts.d
 
 ### Key bindings
-# Open VSCode
-bindsym $mod+c exec code
-bindsym $mod+$alt+c exec code ./
-
 # Screenshot
 #bindsym $mod+shift+s exec killall flameshot || flameshot gui
 # https://github.com/jtheoof/swappy

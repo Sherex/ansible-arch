@@ -9,6 +9,7 @@
     state: present
     name:
       - rofi-lbonn-wayland
+      - rofi-calc
 
 - name: Copy {{ role_name }} configuration.
   become_user: "{{ conf.user.username }}"
