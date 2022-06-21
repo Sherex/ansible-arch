@@ -33,10 +33,6 @@ bindsym $mod+shift+a exec "sudo $script_dir/start-vm.sh"
     # Kill focused window
     bindsym $mod+Shift+q kill
 
-    # Start your launcher
-    bindsym $mod+d exec $menu
-    #bindsym $mod+d exec wofi --show drun
-
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.

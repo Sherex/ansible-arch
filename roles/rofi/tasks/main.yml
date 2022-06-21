@@ -16,3 +16,10 @@
     src: "rofi"
     dest: "~/.config/"
     mode: preserve
+
+- name: Copy {{ role_name }}'s Sway configuration.
+  become_user: "{{ conf.user.username }}"
+  ansible.builtin.copy:
+    src: "sway/"
+    dest: "~/.config/sway/config.d/"
+    mode: preserve
