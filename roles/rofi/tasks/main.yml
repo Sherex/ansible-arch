@@ -10,6 +10,7 @@
     name:
       - rofi-lbonn-wayland
       - rofi-calc
+      - bitwarden-rofi
 
 - name: Copy {{ role_name }} configuration.
   become_user: "{{ conf.user.username }}"
