@@ -6,12 +6,16 @@
     name:
       - neovim
       - python-neovim
+      - nvim-packer-git
+# Is there any benefit in using teal? There currently only a very basic LSP
+#      - teal # Typed Lua (https://github.com/teal-language/tl)
+#      - cyan # Teal build and project manager (https://github.com/teal-language/cyan)
     state: present
 
-#- name: Copy {{ role_name }} service configuration.
-#  become_user: "{{ conf.user.username }}"
-#  ansible.builtin.copy:
-#    src: "./"
-#    dest: "~/.config/nvim/"
-#    mode: preserve
+- name: Copy {{ role_name }} service configuration.
+  become_user: "{{ conf.user.username }}"
+  ansible.builtin.copy:
+    src: "./"
+    dest: "~/.config/nvim/"
+    mode: preserve
 
